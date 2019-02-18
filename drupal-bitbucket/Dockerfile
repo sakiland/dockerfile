@@ -104,3 +104,13 @@ RUN apt-get update; \
 RUN php -r "readfile('https://github.com/drush-ops/drush/releases/download/8.1.16/drush.phar');" > drush
 RUN chmod +x drush; \
     mv drush /usr/local/bin;
+
+# Install ssmtp.
+RUN apt-get update && \
+   apt-get install -y ssmtp && \
+   apt-get clean
+
+# SSMTP settings
+COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
+# PHP mail settings
+RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t -i"' > /usr/local/etc/php/conf.d/mail.ini
