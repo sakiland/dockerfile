@@ -63,6 +63,8 @@ RUN \
     sed -i 's%/var/www/html%/opt/atlassian/pipelines/agent/build/public_html%' /etc/apache2/sites-available/default-ssl.conf;
 
 RUN { \
+        echo '        ErrorLog /opt/atlassian/pipelines/agent/build/error.log'; \
+        echo '        CustomLog /opt/atlassian/pipelines/agent/build/access.log combined'; \
         echo '        DirectoryIndex index.html index.htm index.php index.php4 index.php5'; \
 		echo '        <Directory /opt/atlassian/pipelines/agent/build/public_html/>'; \
 		echo '          Options -Indexes +IncludesNOEXEC +SymLinksIfOwnerMatch'; \
