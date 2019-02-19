@@ -110,7 +110,7 @@ RUN chmod +x drush; \
 # Install drush-patch
 RUN mkdir -p /root/.drush; \
 cd /root/.drush; \
-git clone git@bitbucket.org:davereid/drush-patchfile.git;
+git clone https://bitbucket.org/davereid/drush-patchfile.git;
 
 # Install ssmtp.
 RUN apt-get update && \
