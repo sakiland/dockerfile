@@ -107,6 +107,11 @@ RUN php -r "readfile('https://github.com/drush-ops/drush/releases/download/8.1.1
 RUN chmod +x drush; \
     mv drush /usr/local/bin;
 
+# Install drush-patch
+RUN mkdir -p /root/.drush; \
+cd /root/.drush; \
+git clone git@bitbucket.org:davereid/drush-patchfile.git;
+
 # Install ssmtp.
 RUN apt-get update && \
    apt-get install -y ssmtp && \
