@@ -1,7 +1,7 @@
 # Source of this Dockerfile taken from https://github.com/docker-library/drupal/blob/597c24e51daca68815cc687d8cc147d089db103a/7/apache/Dockerfile
 #
 # from https://www.drupal.org/requirements/php#drupalversions
-FROM php:7.1-apache
+FROM php:7.0-apache
 
 # install the PHP extensions we need
 RUN set -ex; \
