@@ -87,6 +87,9 @@ RUN export DEBIAN_FRONTEND="noninteractive"; apt-get -y install mysql-server
 #RUN debconf-set-selections <<< "mysql-server mysql-server/root_password password root $1"
 #RUN debconf-set-selections <<< "mysql-server mysql-server/root_password_again password root $1"
 
+# Install lftp.
+RUN apt-get update && \
+   apt-get install -y lftp
 
 # Install composer.
 RUN apt-get update; \
