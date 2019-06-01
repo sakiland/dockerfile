@@ -124,3 +124,4 @@ RUN apt-get update && \
 COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
 # PHP mail settings
 RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t -i"' > /usr/local/etc/php/conf.d/mail.ini
+
