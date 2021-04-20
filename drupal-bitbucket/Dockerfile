@@ -1,7 +1,7 @@
 # Source of this Dockerfile taken from https://github.com/docker-library/drupal/blob/597c24e51daca68815cc687d8cc147d089db103a/7/apache/Dockerfile
 #
 # from https://www.drupal.org/requirements/php#drupalversions
-FROM php:7.0-apache
+FROM php:7.4-apache
 
 # install the PHP extensions we need
 RUN set -ex; \
@@ -101,12 +101,12 @@ RUN apt-get update; \
     then \
         echo 'ERROR: Invalid installer signature'; \
     else \
-        php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
+        php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --1; \
     fi ;\
     rm /tmp/composer-setup.php;
 
 # Install drush.
-RUN php -r "readfile('https://github.com/drush-ops/drush/releases/download/8.1.18/drush.phar');" > drush
+RUN php -r "readfile('https://github.com/drush-ops/drush/releases/download/8.4.8/drush.phar');" > drush
 RUN chmod +x drush; \
     mv drush /usr/local/bin;
 
