@@ -128,3 +128,9 @@ RUN apt-get update && \
 COPY msmtp.conf /root/.msmtprc
 # PHP mail settings
 RUN echo 'sendmail_path = "/usr/bin/msmtp -t -i"' > /usr/local/etc/php/conf.d/mail.ini
+
+# Install Node JS and gulp
+RUN curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh && bash nodesource_setup.sh
+RUN apt-get install -y nodejs
+RUN node --version; npm --version;
+RUN npm install --global gulp-cli
