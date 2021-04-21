@@ -83,9 +83,7 @@ RUN \
     chown -R www-data:www-data /opt/atlassian/pipelines/agent/build/public_html;
 
 # Install mysql.
-RUN export DEBIAN_FRONTEND="noninteractive"; apt-get -y install mysql-server
-#RUN debconf-set-selections <<< "mysql-server mysql-server/root_password password root $1"
-#RUN debconf-set-selections <<< "mysql-server mysql-server/root_password_again password root $1"
+RUN apt-get -y install mariadb-server
 
 # Install lftp.
 RUN apt-get update && \
@@ -117,10 +115,10 @@ git clone https://bitbucket.org/sasa_jovanovic_esenca/drush-patchfile.git
 
 # Install ssmtp.
 RUN apt-get update && \
-   apt-get install -y ssmtp && \
+   apt-get install -y msmtp && \
    apt-get clean
 
-# SSMTP settings
-COPY ssmtp.conf /etc/ssmtp/ssmtp.conf
+# MSMTP settings
+COPY msmtp.conf /root/.msmtprc
 # PHP mail settings
-RUN echo 'sendmail_path = "/usr/sbin/ssmtp -t -i"' > /usr/local/etc/php/conf.d/mail.ini
+RUN echo 'sendmail_path = "/usr/bin/msmtp -t -i"' > /usr/local/etc/php/conf.d/mail.ini
