@@ -97,7 +97,7 @@ RUN apt-get update && \
 
 # Install composer.
 RUN apt-get update; \
-    apt-get install -y git; \
+    apt-get install -y git git-lfs; \
     php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"; \
     EXPECTED_SIGNATURE=$(wget -q -O - https://composer.github.io/installer.sig); \
     ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', '/tmp/composer-setup.php');"); \
@@ -105,7 +105,7 @@ RUN apt-get update; \
     then \
         echo 'ERROR: Invalid installer signature'; \
     else \
-        php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer --1; \
+        php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer; \
     fi ;\
     rm /tmp/composer-setup.php;
 
@@ -138,7 +138,6 @@ RUN npm install --global gulp-cli
 # Install dependencies for BackstopJS.
 RUN apt-get install -y \
    fonts-liberation \
-   libappindicator3-1 \
    libasound2 \
    libatk-bridge2.0-0 \
    libatk1.0-0 \
